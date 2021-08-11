@@ -9,6 +9,8 @@
 #include "Region.h"
 #include "Tetrahedron.h"
 #include "DrawnLine.h"
+#include "Shape.h"
+#include "Cube.h"
 
 #define MAX_LOADSTRING 100
 
@@ -213,7 +215,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
             SelectObject(hdc, open);
 
-            POINT oarray[4] = { region.GetOrigin().x - 300, region.GetOrigin().y, region.GetOrigin().x + 300, region.GetOrigin().y, region.GetOrigin().x, region.GetOrigin().y + 300, region.GetOrigin().x, region.GetOrigin().y - 300 };
+            POINT oarray[4] = { region.GetScreenCenter().x - 300, region.GetScreenCenter().y, region.GetScreenCenter().x + 300, region.GetScreenCenter().y, region.GetScreenCenter().x, region.GetScreenCenter().y + 300, region.GetScreenCenter().x, region.GetScreenCenter().y - 300 };
             BYTE otypes[4] = { PT_MOVETO, PT_LINETO, PT_MOVETO, PT_LINETO };
 
             PolyDraw(hdc, oarray, otypes, 4);

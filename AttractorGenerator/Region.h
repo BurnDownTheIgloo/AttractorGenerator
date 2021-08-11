@@ -1,29 +1,30 @@
 #pragma once
 #include <iostream>
+#include <vector>
 #include "framework.h"
 #include "AttractorGenerator.h"
 #include "Point3D.h"
-#include <vector>
-#include "Cube.h"
+#include "Shape.h"
+#include "Camera.h"
 class Region
 {
 private:
-	//HDC hdc;
 	POINT screen_center;
+
+	Camera camera;
 	long qminusd;
 	long d;
 	std::vector<Shape> shapes;
 	
 public:
-	Region() : screen_center({ 100,100 }), qminusd(100), d(100) {};
+	Region() : screen_center({ 100,100 }), qminusd(100), d(100), camera(Camera()) {};
 	Region(POINT origin, long screen_to_origin, long eye_to_screen) : 
 		screen_center(origin), 
 		qminusd(screen_to_origin), 
-		d(eye_to_screen) {};
+		d(eye_to_screen), 
+		camera(Camera()) {};
 
-	//HDC GetHDC() { return hdc; }
-
-	POINT GetOrigin() { return screen_center; }
+	POINT GetScreenCenter() { return screen_center; }
 	long GetEyeToScreen() { return d; }
 	long GetEyeToOrigin() { return d + qminusd; }
 	void AddShape(Shape s) { shapes.push_back(s); }
